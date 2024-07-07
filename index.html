@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gerador de Texto Único</title>
     <style>
+      #botaogerar {
+        background-color: green;
+      }
+      #botaolimpar {
+        background-color: red;
+      }
+      #botaogerar:hover {
+        background-color: rgb(10, 187, 10);
+      }
+      #botaolimpar:hover {
+        background-color: rgb(246, 69, 69);
+      }
+
       body {
         font-family: "Arial", sans-serif;
         background-color: #333;
@@ -347,8 +360,15 @@
         </div>
       </div>
       <div class="button-group">
-        <button class="botao" onclick="gerarTexto()">Gerar Texto</button>
-        <button class="botao" type="button" onclick="limparCampos()">
+        <button id="botaogerar" class="botao" onclick="gerarTexto()">
+          Gerar Texto
+        </button>
+        <button
+          id="botaolimpar"
+          class="botao"
+          type="button"
+          onclick="limparCampos()"
+        >
           Limpar Campos
         </button>
       </div>
