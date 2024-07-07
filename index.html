@@ -46,11 +46,13 @@
       }
       .input-group-inline {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         margin-bottom: 10px;
       }
       .input-group-third {
-        width: 32%;
+        width: calc(33.33% - 10px);
+        margin-bottom: 10px;
       }
       label {
         display: block;
@@ -72,7 +74,7 @@
       }
       input[type="text"].double-height,
       textarea.double-height {
-        height: 80px; /* Altura dobrada */
+        height: 80px;
       }
       input:focus,
       textarea:focus,
@@ -80,7 +82,7 @@
         border-color: #007bff;
       }
       button {
-        width: 40%;
+        width: 200px;
         padding: 10px 20px;
         background-color: #007bff;
         color: white;
@@ -89,23 +91,35 @@
         cursor: pointer;
         font-size: 16px;
         transition: background-color 0.3s;
+        margin-right: 2%;
       }
       button:hover {
         background-color: #0056b3;
       }
       .button-group {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         margin-top: 20px;
       }
       .button-group button {
-        margin: 0 10px;
+        width: 100%;
+        margin: 0;
       }
       .input-group:last-child {
         margin-top: 20px;
       }
       textarea {
         resize: none;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .input-group-third {
+          width: 100%;
+        }
+        button {
+          width: 100%;
+        }
       }
     </style>
   </head>
@@ -327,8 +341,10 @@
         </div>
       </div>
       <div class="button-group">
-        <button onclick="gerarTexto()">Gerar Texto</button>
-        <button type="button" onclick="limparCampos()">Limpar Campos</button>
+        <button class="botao" onclick="gerarTexto()">Gerar Texto</button>
+        <button class="botao" type="button" onclick="limparCampos()">
+          Limpar Campos
+        </button>
       </div>
 
       <div class="input-group">
