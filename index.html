@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Texto Único</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: white;
+      }
+      .container {
+        background-color: #231f1e;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 600px;
+        width: 100%;
+        margin: 20px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .header img {
+        max-width: 150px;
+        margin-right: 20px;
+      }
+      h1 {
+        color: white;
+        margin: 0;
+        padding: 10px 0 20px;
+        text-align: center;
+      }
+      .input-group {
+        margin-bottom: 15px;
+      }
+      .input-group-inline {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .input-group-third {
+        width: 32%;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: white;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        transition: border-color 0.3s;
+        background-color: #444;
+        color: white;
+        text-transform: uppercase;
+      }
+      input[type="text"].double-height,
+      textarea.double-height {
+        height: 80px; /* Altura dobrada */
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: #007bff;
+      }
+      button {
+        width: 40%;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .button-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .button-group button {
+        margin: 0 10px;
+      }
+      .input-group:last-child {
+        margin-top: 20px;
+      }
+      textarea {
+        resize: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="https://i.postimg.cc/pXnSPYMC/Logo.png" alt="Logo" />
+        <h1>Gerador de texto OS Smartphone e Celulares</h1>
+      </div>
+      <div>
+        <label for="tipoOs">Selecione o tipo de OS:</label>
+        <select id="tipoOs" onchange="mostrarCampos()">
+          <option value="reparoFeito">OS REPARO FEITO</option>
+          <option value="orcamentoFeito">OS ORÇAMENTO FEITO</option>
+          <option value="devolucao">OS DEVOLUÇÃO</option>
+          <option value="aprovada">OS APROVADA</option>
+        </select>
+      </div>
+      <!-- Aqui vão os campos dinâmicos gerados pelo JavaScript -->
+      <div class="input-group" id="camposReparoFeito">
+        <h3 style="margin-top: 20px">OS REPARO FEITO</h3>
+        <div class="input-group-inline">
+          <div class="input-group-third">
+            <label for="osReparo">OS:</label>
+            <input
+              type="text"
+              id="osReparo"
+              style="text-transform: uppercase"
+            />
+          </div>
+          <div class="input-group-third">
+            <label for="modeloReparo">MODELO:</label>
+            <input
+              type="text"
+              id="modeloReparo"
+              style="text-transform: uppercase"
+            />
+          </div>
+          <div class="input-group-third">
+            <label for="clienteReparo">CLIENTE:</label>
+            <input
+              type="text"
+              id="clienteReparo"
+              style="text-transform: uppercase"
+            />
+          </div>
+        </div>
+        <div class="input-group-inline">
+          <div class="input-group-third">
+            <label for="dataReparo">DATA REPARO:</label>
+            <input type="date" id="dataReparo" />
+          </div>
+          <div class="input-group-third">
+            <label for="horaReparo">HORA:</label>
+            <input type="time" id="horaReparo" />
+          </div>
+          <div class="input-group-third">
+            <label for="tecReparo">TEC:</label>
+            <input
+              type="text"
+              id="tecReparo"
+              style="text-transform: uppercase"
+            />
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="servicoReparo">SERVIÇO:</label>
+          <input
+            type="text"
+            id="servicoReparo"
+            class="double-height"
+            style="text-transform: uppercase"
+          />
+        </div>
+      </div>
+      <div class="input-group" id="camposOrcamentoFeito" style="display: none">
+        <h3 style="margin-top: 20px">OS ORÇAMENTO FEITO</h3>
+        <div class="input-group-inline">
+          <div class="input-group-third">
+            <label for="osOrcamento">OS:</label>
+            <input
+              type="text"
+              id="osOrcamento"
+              style="text-transform: uppercase"
+            />
+          </div>
+          <div class="input-group-third">
+            <label for="modeloOrcamento">MODELO:</label>
+            <input
+              type="text"
+              id="modeloOrcamento"
+              style="text-transform: uppercase"
+            />
+          </div>
+          <div class="input-group-third">
+            <label for="clienteOrcamento">CLIENTE:</label>
+            <input
+              type="text"
+              id="clienteOrcamento"
+              style="text-transform: uppercase"
+            />
+          </div>
+        </div>
+        <div class="input-group-inline">
+          <div class="input-group-third">
+            <label for="dataOrcamento">DATA ORÇAMENTO:</label>
+            <input type="date" id="dataOrcamento" />
+          </div>
+          <div class="input-group-third">
+            <label for="horaOrcamento">HORA:</label>
+            <input type="time" id="horaOrcamento" />
+          </div>
+          <div class="input-group-third">
+            <label for="tecOrcamento">TEC:</label>
+            <input
+              type="text"
+              id="tecOrcamento"
+              style="text-transform: uppercase"
+            />
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="orcamentoOrcamento">ORÇAMENTO:</label>
+          <input
+            type="text"
+            id="orcamentoOrcamento"
+            class="double-height"
+            style="text-transform: uppercase"
+          />
+        </div>
+      </div>
+
+      <div class="input-group" id="camposDevolucao" style="display: none">
+        <h3 style="margin-top: 20px">OS DEVOLUÇÃO</h3>
+        <div class="input-group-inline">
+          <div class="input-group-third">
+            <label for="modeloDevolucao">MODELO:</label>
+            <input
+              type="text"
+              id="modeloDevolucao"
+              style="text-transform: uppercase"
+            />
+          </div>
+          <div class="input-group-third">
+            <label for="clienteDevolucao">CLIENTE:</label>
+            <input
+              type="text"
+              id="clienteDevolucao"
+              style="text-transform: uppercase"
+            />
+          </div>
+          <div class="input-group-third">
+            <label for="dataDevolucao">DATA DA DEVOLUÇÃO:</label>
+            <input type="date" id="dataDevolucao" />
+          </div>
+        </div>
+        <div class="input-group-inline">
+          <div class="input-group-third">
+            <label for="horaDevolucao">HORA:</label>
+            <input type="time" id="horaDevolucao" />
+          </div>
+          <div class="input-group-third">
+            <label for="tecDevolucao">TEC:</label>
+            <input
+              type="text"
+              id="tecDevolucao"
+              style="text-transform: uppercase"
+            />
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="servicosDevolucao">SERVIÇOS:</label>
+          <input
+            type="text"
+            id="servicosDevolucao"
+            class="double-height"
+            style="text-transform: uppercase"
+          />
+        </div>
+      </div>
+
+      <div class="input-group" id="camposAprovada" style="display: none">
+        <h3 style="margin-top: 20px">OS APROVADA</h3>
+        <div class="input-group-inline">
+          <div class="input-group-third">
+            <label for="osAprovada">OS:</label>
+            <input
+              type="text"
+              id="osAprovada"
+              style="text-transform: uppercase"
+            />
+          </div>
+          <div class="input-group-third">
+            <label for="modeloAprovada">MODELO:</label>
+            <input
+              type="text"
+              id="modeloAprovada"
+              style="text-transform: uppercase"
+            />
+          </div>
+          <div class="input-group-third">
+            <label for="clienteAprovada">CLIENTE:</label>
+            <input
+              type="text"
+              id="clienteAprovada"
+              style="text-transform: uppercase"
+            />
+          </div>
+        </div>
+        <div class="input-group-inline">
+          <div class="input-group-third">
+            <label for="dataAprovada">DATA DA APROVAÇÃO:</label>
+            <input type="date" id="dataAprovada" />
+          </div>
+          <div class="input-group-third">
+            <label for="horaAprovada">HORA:</label>
+            <input type="time" id="horaAprovada" />
+          </div>
+        </div>
+      </div>
+      <div class="button-group">
+        <button onclick="gerarTexto()">Gerar Texto</button>
+        <button type="button" onclick="limparCampos()">Limpar Campos</button>
+      </div>
+
+      <div class="input-group">
+        <label for="resultado">Resultado:</label>
+        <textarea id="resultado" rows="10"></textarea>
+      </div>
+    </div>
+
+    <script>
+      function limparCampos() {
+        document.getElementById("osReparo").value = "";
+        document.getElementById("modeloReparo").value = "";
+        document.getElementById("clienteReparo").value = "";
+        document.getElementById("dataReparo").value = "";
+        document.getElementById("horaReparo").value = "";
+        document.getElementById("tecReparo").value = "";
+        document.getElementById("servicoReparo").value = "";
+        document.getElementById("resultado").value = "";
+
+        document.getElementById("osOrcamento").value = "";
+        document.getElementById("modeloOrcamento").value = "";
+        document.getElementById("clienteOrcamento").value = "";
+        document.getElementById("dataOrcamento").value = "";
+        document.getElementById("horaOrcamento").value = "";
+        document.getElementById("tecOrcamento").value = "";
+        document.getElementById("orcamentoOrcamento").value = "";
+        document.getElementById("resultado").value = "";
+
+        document.getElementById("modeloDevolucao").value = "";
+        document.getElementById("clienteDevolucao").value = "";
+        document.getElementById("dataDevolucao").value = "";
+        document.getElementById("horaDevolucao").value = "";
+        document.getElementById("tecDevolucao").value = "";
+        document.getElementById("servicosDevolucao").value = "";
+        document.getElementById("resultado").value = "";
+
+        document.getElementById("osAprovada").value = "";
+        document.getElementById("modeloAprovada").value = "";
+        document.getElementById("clienteAprovada").value = "";
+        document.getElementById("dataAprovada").value = "";
+        document.getElementById("horaAprovada").value = "";
+        document.getElementById("resultado").value = "";
+
+        const tipoOs = document.getElementById("tipoOs").value;
+        mostrarCampos(tipoOs);
+      }
+
+      function mostrarCampos() {
+        const tipoOs = document.getElementById("tipoOs").value;
+        document.getElementById("camposReparoFeito").style.display = "none";
+        document.getElementById("camposOrcamentoFeito").style.display = "none";
+        document.getElementById("camposDevolucao").style.display = "none";
+        document.getElementById("camposAprovada").style.display = "none";
+
+        if (tipoOs === "reparoFeito") {
+          document.getElementById("camposReparoFeito").style.display = "block";
+        } else if (tipoOs === "orcamentoFeito") {
+          document.getElementById("camposOrcamentoFeito").style.display =
+            "block";
+        } else if (tipoOs === "devolucao") {
+          document.getElementById("camposDevolucao").style.display = "block";
+        } else if (tipoOs === "aprovada") {
+          document.getElementById("camposAprovada").style.display = "block";
+        }
+      }
+
+      function gerarTexto() {
+        const tipoOs =
+          document.getElementById("tipoOs").options[
+            document.getElementById("tipoOs").selectedIndex
+          ].text;
+        let texto = "";
+
+        if (tipoOs === "OS REPARO FEITO") {
+          const os = document.getElementById("osReparo").value;
+          const modelo = document.getElementById("modeloReparo").value;
+          const cliente = document.getElementById("clienteReparo").value;
+          const dataReparo = document.getElementById("dataReparo").value;
+          const hora = document.getElementById("horaReparo").value;
+          const tec = document.getElementById("tecReparo").value;
+          const servico = document.getElementById("servicoReparo").value;
+
+          texto = `OS REPARO FEITO\nOS: ${os}\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA REPARO: ${dataReparo}\nHORA: ${hora}\nTEC: ${tec}\n\nSERVIÇO: ${servico}`;
+        } else if (tipoOs === "OS ORÇAMENTO FEITO") {
+          const os = document.getElementById("osOrcamento").value;
+          const modelo = document.getElementById("modeloOrcamento").value;
+          const cliente = document.getElementById("clienteOrcamento").value;
+          const dataOrcamento = document.getElementById("dataOrcamento").value;
+          const hora = document.getElementById("horaOrcamento").value;
+          const tec = document.getElementById("tecOrcamento").value;
+          const orcamento = document.getElementById("orcamentoOrcamento").value;
+
+          texto = `OS ORÇAMENTO FEITO\nOS: ${os}\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA ORÇAMENTO: ${dataOrcamento}\nHORA: ${hora}\nTEC: ${tec}\n\nORÇAMENTO: ${orcamento}`;
+        } else if (tipoOs === "OS DEVOLUÇÃO") {
+          const modelo = document.getElementById("modeloDevolucao").value;
+          const cliente = document.getElementById("clienteDevolucao").value;
+          const dataDevolucao = document.getElementById("dataDevolucao").value;
+          const hora = document.getElementById("horaDevolucao").value;
+          const tec = document.getElementById("tecDevolucao").value;
+          const servicos = document.getElementById("servicosDevolucao").value;
+
+          texto = `OS DEVOLUÇÃO\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA DA DEVOLUÇÃO: ${dataDevolucao}\nHORA: ${hora}\nTEC: ${tec}\n\nSERVIÇOS: ${servicos}`;
+        } else if (tipoOs === "OS APROVADA") {
+          const os = document.getElementById("osAprovada").value;
+          const modelo = document.getElementById("modeloAprovada").value;
+          const cliente = document.getElementById("clienteAprovada").value;
+          const dataAprovada = document.getElementById("dataAprovada").value;
+          const hora = document.getElementById("horaAprovada").value;
+
+          texto = `OS APROVADA\nOS: ${os}\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA DA APROVAÇÃO: ${dataAprovada}\nHORA: ${hora}`;
+        }
+
+        document.getElementById("resultado").value = texto;
+      }
+    </script>
+  </body>
+</html>
