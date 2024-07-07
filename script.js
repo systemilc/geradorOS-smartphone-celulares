@@ -70,7 +70,10 @@ function gerarTexto() {
     const tec = document.getElementById("tecReparo").value;
     const servico = document.getElementById("servicoReparo").value;
 
-    texto = `OS REPARO FEITO\nOS: ${os}\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA REPARO: ${dataReparo}\nHORA: ${hora}\nTEC: ${tec}\n\nSERVIÇO: ${servico}`;
+    // Formata a data para o formato dia/mês/ano
+    const dataFormatada = formatarData(dataReparo);
+
+    texto = `OS REPARO FEITO\nOS: ${os}\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA REPARO: ${dataFormatada}\nHORA: ${hora}\nTEC: ${tec}\n\nSERVIÇO: ${servico}`;
   } else if (tipoOs === "OS ORÇAMENTO FEITO") {
     const os = document.getElementById("osOrcamento").value;
     const modelo = document.getElementById("modeloOrcamento").value;
@@ -80,7 +83,10 @@ function gerarTexto() {
     const tec = document.getElementById("tecOrcamento").value;
     const orcamento = document.getElementById("orcamentoOrcamento").value;
 
-    texto = `OS ORÇAMENTO FEITO\nOS: ${os}\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA ORÇAMENTO: ${dataOrcamento}\nHORA: ${hora}\nTEC: ${tec}\n\nORÇAMENTO: ${orcamento}`;
+    // Formata a data para o formato dia/mês/ano
+    const dataFormatada = formatarData(dataOrcamento);
+
+    texto = `OS ORÇAMENTO FEITO\nOS: ${os}\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA ORÇAMENTO: ${dataFormatada}\nHORA: ${hora}\nTEC: ${tec}\n\nORÇAMENTO: ${orcamento}`;
   } else if (tipoOs === "OS DEVOLUÇÃO") {
     const modelo = document.getElementById("modeloDevolucao").value;
     const cliente = document.getElementById("clienteDevolucao").value;
@@ -89,7 +95,10 @@ function gerarTexto() {
     const tec = document.getElementById("tecDevolucao").value;
     const servicos = document.getElementById("servicosDevolucao").value;
 
-    texto = `OS DEVOLUÇÃO\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA DA DEVOLUÇÃO: ${dataDevolucao}\nHORA: ${hora}\nTEC: ${tec}\n\nSERVIÇOS: ${servicos}`;
+    // Formata a data para o formato dia/mês/ano
+    const dataFormatada = formatarData(dataDevolucao);
+
+    texto = `OS DEVOLUÇÃO\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA DA DEVOLUÇÃO: ${dataFormatada}\nHORA: ${hora}\nTEC: ${tec}\n\nSERVIÇOS: ${servicos}`;
   } else if (tipoOs === "OS APROVADA") {
     const os = document.getElementById("osAprovada").value;
     const modelo = document.getElementById("modeloAprovada").value;
@@ -97,8 +106,16 @@ function gerarTexto() {
     const dataAprovada = document.getElementById("dataAprovada").value;
     const hora = document.getElementById("horaAprovada").value;
 
-    texto = `OS APROVADA\nOS: ${os}\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA DA APROVAÇÃO: ${dataAprovada}\nHORA: ${hora}`;
+    // Formata a data para o formato dia/mês/ano
+    const dataFormatada = formatarData(dataAprovada);
+
+    texto = `OS APROVADA\nOS: ${os}\nMODELO: ${modelo}\nCLIENTE: ${cliente}\nDATA DA APROVAÇÃO: ${dataFormatada}\nHORA: ${hora}`;
   }
 
   document.getElementById("resultado").value = texto;
+}
+
+function formatarData(data) {
+  const [ano, mes, dia] = data.split("-");
+  return `${dia}/${mes}/${ano}`;
 }

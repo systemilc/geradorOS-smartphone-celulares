@@ -145,3 +145,18 @@ textarea {
     width: 100%;
   }
 }
+
+/* Formatação para datas no formato dia/mês/ano */
+input[type="date"] {
+  appearance: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #444;
+  color: white;
+  text-transform: uppercase;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
